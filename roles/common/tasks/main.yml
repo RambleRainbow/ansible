@@ -1,0 +1,5 @@
+---
+- name: bind-utils
+  package: 
+    name: bind-utils
+    state: latest
