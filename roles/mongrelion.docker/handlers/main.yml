@@ -1,0 +1,10 @@
+---
+- name: reload unit
+  become: true
+  command: systemctl daemon-reload
+  when: "facter_os.release.major == 7"
+
+- name: restart docker
+  service:
+    name: docker
+    state: restarted

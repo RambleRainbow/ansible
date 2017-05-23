@@ -1,0 +1,15 @@
+---
+
+- name: get docker images
+  shell: "docker images --filter=reference=\"{{imageName}}:{{tag}}\" --format \"\{\{.Repository\}\}:\{\{.TAG\}\}\""
+  register: images
+
+- name: pull image
+  shell: "docker pull {{imageName}}:{{tag}}"
+  when: images.stdout.find("\n")
+  
+   
+- name: get docker containers
+  shell: "docker ps -a | grep {{name}}"
+  register: containers
+  ignore_errors: true

@@ -1,4 +1,4 @@
 ---
 dependencies:
-  - { role: reallyenglish.ntpd }
+#  - { role: reallyenglish.ntpd }
   - { role: mongrelion.docker }
