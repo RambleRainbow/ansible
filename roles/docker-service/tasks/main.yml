@@ -1,15 +1,22 @@
 ---
 
 - name: get docker images
-  shell: "docker images --filter=reference=\"{{imageName}}:{{tag}}\" --format \"\{\{.Repository\}\}:\{\{.TAG\}\}\""
+  shell: "docker images --filter=reference='{{imageName}}:{{imageTag}}' --format='{%raw%}{{.Repository}}:{{.Tag}}{%endraw%}' "
   register: images
 
 - name: pull image
-  shell: "docker pull {{imageName}}:{{tag}}"
-  when: images.stdout.find("\n")
+  shell: "docker pull {{imageName}}:{{imageTag}}"
+  when: images.stdout.find(imageName)
   
    
-- name: get docker containers
-  shell: "docker ps -a | grep {{name}}"
-  register: containers
+- name: check docker service 
+  shell: "systemctl is-active docker-{{serviceName}}.service"
+  register: service_state
   ignore_errors: true
+    
+- name: install docker service
+  template:
+    src: docker.service.j2
+    dest: /etc/systemd/system/docker-{{serviceName}}.service
+  when: (service_state.stdout == 'unknown') or
+        (service_state.stdout == 'failed')

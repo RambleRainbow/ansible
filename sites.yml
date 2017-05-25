@@ -1,4 +1,4 @@
 - hosts: aly 
   roles:
-    - common
-    - { role: docker-service, imageName: warmworm/shadowsocks, tag: 0.0.3, name: ss}
+    #- common
+    - { role: docker-service, imageName: warmworm/shadowsocks, imageTag: 0.0.7, serviceName: ss}
