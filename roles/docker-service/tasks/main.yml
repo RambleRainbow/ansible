@@ -9,14 +9,16 @@
   when: images.stdout.find(imageName)
   
    
-- name: check docker service 
-  shell: "systemctl is-active docker-{{serviceName}}.service"
-  register: service_state
-  ignore_errors: true
-    
 - name: install docker service
   template:
     src: docker.service.j2
     dest: /etc/systemd/system/docker-{{serviceName}}.service
-  when: (service_state.stdout == 'unknown') or
-        (service_state.stdout == 'failed')
+  notify:
+    - reload docker service
+    - enable docker service
+    - stop docker service
+
+- name: start docker service
+  shell: echo "just for trigger handler"
+  notify:
+    - start docker service
