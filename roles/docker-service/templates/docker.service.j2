@@ -21,7 +21,16 @@ ExecStartPre=-/usr/bin/docker kill {{ serviceName }}
 ExecStartPre=-/usr/bin/docker rm  {{ serviceName}}
 
 ExecStart=/usr/bin/docker run --name {{ serviceName }} \
-          {{ imageName }}:{{ imageTag }} 
+          {% for item in tcp %}
+          -p {{item}}/tcp \
+          {% endfor %}
+          {% for item in udp %}
+          -p {{item}}/udp \
+          {% endfor %}
+          {% for item in volumns %}
+          -v {{item}} \
+          {% endfor %}
+          {{ imageName }}:{{ imageTag }} {{command}}
          
 ExecStop=-/usr/bin/docker stop {{ serviceName }}
 ExecStop=-/usr/bin/docker rm  {{ serviceName }}

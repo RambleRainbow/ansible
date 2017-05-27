@@ -1,0 +1,6 @@
+---
+#default values for docker.service.j2, if some user do not define it in role
+tcp: []
+udp: []
+volumns: []
+command: ""
