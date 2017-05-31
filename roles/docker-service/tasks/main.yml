@@ -8,6 +8,16 @@
   shell: "docker pull {{imageName}}:{{imageTag}}"
   when: images.stdout.find(imageName)
   
+- name: do debug
+  debug:
+    msg: 
+      - "docker params:"
+      - "  image={{imageName}}:{{imageTag}}"
+      - "  command={{command}}"
+      - "  serviceName={{serviceName}}"
+      - "  tcp={{tcp}}"
+      - "  udp={{udp}}"
+      - "  volumns={{volumns}}"
    
 - name: install docker service
   template:

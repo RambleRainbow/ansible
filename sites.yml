@@ -1,13 +1,4 @@
 - hosts: aly 
   roles:
     #- common
-    - { 
-        role: docker-service, 
-        imageName: warmworm/shadowsocks, 
-        imageTag: 0.0.8, 
-        serviceName: ss,
-        command: "-m client", 
-        tcp: ["8000:8000","8001:8001","8002:8002"],
-        udp: ["53:53"],
-        volumns: ["/root/ss.d:/conf.d"]
-      }
+    - { role: shadowsocks, serviceName: "ss" }

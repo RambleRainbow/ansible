@@ -1,0 +1,28 @@
+---
+- name: do debug
+  debug:
+    msg: 
+      - "docker params:"
+      - "  image={{imageName}}:{{imageTag}}"
+      - "  command={{command}}"
+      - "  serviceName={{serviceName}}"
+      - "  tcp={{tcp}}"
+      - "  udp={{udp}}"
+      - "  volumns={{volumns}}"
+      - "  workmode={{workmode}}"
+    
+- name: override default vars if running under client mode
+  include_vars: defaults/client.yml
+  when: workmode=="client"
+
+- name: install shadowsocks
+  include_role:
+    name: docker-service
+    vars:
+      imageName: imageName
+      imageTag: imageTag
+      serviceName: serviceName
+      command: command
+      tcp: tcp
+      udp: udp
+      volumns: volumns

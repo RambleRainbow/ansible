@@ -1,0 +1,12 @@
+---
+
+imageName: warmworm/shadowsocks
+imageTag: 0.0.9
+serviceName: dd
+command:
+
+tcp: ["8000-8002:8000-8002"]
+udp: ["8000-8002:8000-8002"]
+volumns: ["/etc/ss.d:/conf.d"]
+
+workmode: "server"
