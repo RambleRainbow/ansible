@@ -6,29 +6,25 @@
 
 - name: pull image
   shell: "docker pull {{imageName}}:{{imageTag}}"
-  when: images.stdout.find(imageName)
+  when: images.stdout.find(imageName) == -1
   
-- name: do debug
-  debug:
-    msg: 
-      - "docker params:"
-      - "  image={{imageName}}:{{imageTag}}"
-      - "  command={{command}}"
-      - "  serviceName={{serviceName}}"
-      - "  tcp={{tcp}}"
-      - "  udp={{udp}}"
-      - "  volumns={{volumns}}"
-   
 - name: install docker service
   template:
     src: docker.service.j2
     dest: /etc/systemd/system/docker-{{serviceName}}.service
-  notify:
-    - reload docker service
-    - enable docker service
-    - stop docker service
+  register: instate
+  
 
-- name: start docker service
-  shell: echo "just for trigger handler"
-  notify:
-    - start docker service
+- name: reload docker service
+  shell: systemctl daemon-reload
+  when: instate.changed
+  
+- name: get docker service state
+  shell: systemctl is-active docker-{{serviceName}}
+  register: svcstate
+  ignore_errors: yes
+
+- name: restart docker service
+  shell: systemctl restart docker-{{serviceName}}
+  when: (instate.changed) or 
+        (svcstate.stdout.find("active") == -1)

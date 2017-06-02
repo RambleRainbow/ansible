@@ -2,7 +2,7 @@
 
 imageName: warmworm/shadowsocks
 imageTag: 0.0.9
-serviceName: dd
+serviceName: ss
 command:
 
 tcp: ["8000-8002:8000-8002"]

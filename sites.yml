@@ -2,3 +2,4 @@
   roles:
     #- common
     - { role: shadowsocks, serviceName: "ss" }
+    - { role: shadowsocks, serviceName: "ssc", workmode: "client" }
