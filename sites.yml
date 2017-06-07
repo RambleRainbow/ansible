@@ -1,5 +1,6 @@
 - hosts: aly 
   roles:
-    #- common
-    - { role: shadowsocks, serviceName: "ss" }
-    - { role: shadowsocks, serviceName: "ssc", workmode: "client" }
+    - common
+    - docker-shadowsocks
+    - docker-shadowsocks_client
+    - docker-reg

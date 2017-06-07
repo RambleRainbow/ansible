@@ -1,0 +1,4 @@
+---
+- name: install docker service shadowsocks_client
+  include_role:
+    name: docker-service

@@ -1,9 +1,7 @@
 ---
-- name: override default vars if running under client mode
-  include_vars: defaults/client.yml
-  when: workmode=="client"
+# tasks file for docker-reg
 
-- name: install shadowsocks
+- name: install docker registry
   include_role:
     name: docker-service
     vars:

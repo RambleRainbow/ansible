@@ -1,0 +1,4 @@
+---
+- name: "install docker service [shadowsocks]"
+  include_role:
+    name: docker-service

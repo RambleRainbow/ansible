@@ -1,0 +1,10 @@
+---
+
+imageName: registry
+imageTag: 2.6.1
+serviceName: reg
+command: ""
+
+tcp: ["5000:5000"]
+udp: []
+volumns: ["/data/registry:/var/lib/registry"]

@@ -1,0 +1,9 @@
+---
+
+imageName: warmworm/shadowsocks
+imageTag: 0.0.10
+serviceName: ssc
+volumns: ["/etc/ss.d:/conf.d"]
+command: "-m client"
+tcp: ["1080:1080","80:80"]
+udp: ["53:53"]

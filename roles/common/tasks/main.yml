@@ -3,3 +3,8 @@
   package: 
     name: bind-utils
     state: latest
+
+- name: telnet
+  package:
+    name: telnet
+    state: latest
