@@ -2,3 +2,4 @@
 dependencies:
 #  - { role: reallyenglish.ntpd }
   - { role: mongrelion.docker }
+  - { role: bobbyrenwick.pip }

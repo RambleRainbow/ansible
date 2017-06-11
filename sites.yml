@@ -4,3 +4,7 @@
     - docker-shadowsocks
     - docker-shadowsocks_client
     - docker-reg
+- hosts: vps
+  roles:
+    - common
+    - docker-shadowsocks

@@ -1,4 +1,6 @@
 ---
+- include: "os/{{ ansible_os_family }}.yml"
+
 - name: bind-utils
   package: 
     name: bind-utils
@@ -8,3 +10,17 @@
   package:
     name: telnet
     state: latest
+
+- name: git
+  package:
+    name: git
+    state: latest
+
+- name: wget
+  package:
+    name: wget
+    state: latest
+
+- name: speed-cli
+  pip: 
+    name: speedtest-cli
