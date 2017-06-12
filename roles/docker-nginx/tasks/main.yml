@@ -1,0 +1,4 @@
+---
+- name: "install docker service [nginx]"
+  include_role:
+    name: docker-service

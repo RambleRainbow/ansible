@@ -1,0 +1,10 @@
+---
+
+imageName: nginx 
+imageTag: 1.13.1-alpine
+serviceName: nginx
+command:
+
+tcp: ["8004:80"]
+udp: []
+volumns: ["/data/nginx/html:/usr/share/nginx/html"]
