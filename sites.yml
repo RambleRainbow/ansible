@@ -7,12 +7,15 @@
 - hosts: vps
   roles:
     - common
-    - docker-shadowsocks
+#    - docker-shadowsocks
     - docker-nginx
-    - 
-      role: softasap.sa-vpn-softether
-      softether_vpn_users:
-        - 
-          name: test
-          password: test
-      softether_ipsec_presharedkey: Abcd123456
+#    - 
+#      role: softasap.sa-vpn-softether
+#      softether_vpn_users:
+#        - 
+#          name: test
+#          password: test
+#      softether_ipsec_presharedkey: Abcd123456
+- hosts: test
+  roles:
+    - common

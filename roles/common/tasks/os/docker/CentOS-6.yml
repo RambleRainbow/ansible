@@ -1,0 +1,10 @@
+- name: install docker
+  package:
+    name: docker-io
+    state: latest
+    
+- name: start docker service
+  service:
+    name: docker
+    enabled: yes
+    state: started

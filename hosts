@@ -4,4 +4,8 @@
 [vps]
 #23.27.112.79
 #138.197.199.33
-97.107.136.214
+#do ansible_host=188.226.145.104
+#ld ansible_host=97.107.136.214
+
+[test]
+centos6 ansible_host=192.168.2.81

@@ -1,12 +1,12 @@
 ---
 
-- name: get docker images
-  shell: "docker images --filter=reference='{{imageName}}:{{imageTag}}' --format='{%raw%}{{.Repository}}:{{.Tag}}{%endraw%}' "
-  register: images
+#- name: get docker images
+#  shell: "docker images --filter=reference='{{imageName}}:{{imageTag}}' --format='{%raw%}{{.Repository}}:{{.Tag}}{%endraw%}' "
+#  register: images
 
 - name: pull image
   shell: "docker pull {{imageName}}:{{imageTag}}"
-  when: images.stdout.find(imageName) == -1
+#  when: images.stdout.find(imageName) == -1
   
 - name: install docker service
   template:

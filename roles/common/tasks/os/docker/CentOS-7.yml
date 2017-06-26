@@ -1,0 +1,26 @@
+- name: packages for docker repos
+  package:
+    name: "{{item}}"
+    state: latest
+  with_items:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+    
+- name: add docker repos
+  command:  yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    
+- name: update yum repos
+  command: yum makecache fast
+  
+- name: install docker
+  package:
+    name: "docker-ce"
+    state: latest
+    
+- name: manage docker service
+  service:
+    name: docker
+    enabled: yes
+    state: started
+  
